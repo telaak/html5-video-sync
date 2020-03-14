@@ -1,0 +1,16 @@
+<script src="/socket.io/socket.io.js"></script>
+<video id="video" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4">
+</video>
+<script>
+let socket = io.connect()
+let video = document.getElementById('video')
+socket.on('expressSeeked', time => {
+  video.currentTime = time
+})
+socket.on('play', () => {
+  video.play()
+})
+socket.on('pause', () => {
+  video.pause()
+})
+</script>

@@ -1,0 +1,16 @@
+<script src="/socket.io/socket.io.js"></script>
+<video id="video" src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4" controls>
+</video>
+<script>
+let socket = io.connect()
+let video = document.getElementById('video')
+video.addEventListener('seeked', event => {
+  socket.emit('seeked', video.currentTime)
+})
+video.addEventListener('pause', event => {
+  socket.emit('pause')
+})
+video.addEventListener('play', event => {
+  socket.emit('play')
+})
+</script>
